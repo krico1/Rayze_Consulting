@@ -3,22 +3,22 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
-import { withFirebase } from '../Firebase';
-import { AuthUserContext } from '../Session';
+import { withFirebase } from '../services/Firebase';
+import { AuthUserContext } from '../services/Session';
 
 
-import Navigation from '../Navigation';
-import LandingPage from '../Landing';
-import SignUpPage from '../SignUp';
-import SignInPage from '../SignIn';
-import PasswordForgetPage from '../PasswordForget';
-import HomePage from '../Home';
-import AccountPage from '../Account';
+import Navigation from '../components/Navigation';
+import LandingPage from '../components/Landing';
+import SignUpPage from '../pages/RegisterPages/SignUp';
+import SignInPage from '../pages/RegisterPages/SignIn';
+import PasswordForgetPage from '../components/PasswordForget';
+import HomePage from '../pages/Home';
+import AccountPage from '../pages/Account';
 // import AdminPage from '../Admin';
  
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from '../constants/routes';
  
-import { withAuthentication } from '../Session';
+import { withAuthentication } from '../services/Session';
 
 const App = () => (
   <Router>

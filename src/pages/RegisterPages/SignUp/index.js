@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 // import { FirebaseContext } from '../Firebase';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../../../services/Firebase';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
 
 
 
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from '../../../constants/routes';
  
 // Main Page - Sign Up
 const SignUpPage = () => (
