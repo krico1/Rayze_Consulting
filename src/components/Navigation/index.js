@@ -16,15 +16,16 @@ import FlightLandIcon from '@material-ui/icons/FlightLand';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: "fixed",
     bottom: 0,
     left:0,
     width: "100%",
     zIndex:5,
+    color: "secondary",
   },
-});
+}));
 
 function Navigation() {
   
@@ -107,7 +108,7 @@ function NavigationNonAuth() {
         label="Landing" 
         icon={<FlightLandIcon />} 
         component={Link}
-        to="/landing"
+        to='/'
         />
 
        <BottomNavigationAction 

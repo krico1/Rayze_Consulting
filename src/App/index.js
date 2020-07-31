@@ -6,6 +6,9 @@ import {
 import { withFirebase } from '../services/Firebase';
 import { AuthUserContext } from '../services/Session';
 
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import theme from '../components/MUITheme/theme.js';
 
 import Navigation from '../components/Navigation';
 import LandingPage from '../components/Landing';
@@ -21,7 +24,9 @@ import * as ROUTES from '../constants/routes';
 import { withAuthentication } from '../services/Session';
 
 const App = () => (
-  <Router>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Router>
     <div>
       <Navigation />
  
@@ -39,6 +44,8 @@ const App = () => (
       {/* <Route path={ROUTES.ADMIN} component={AdminPage} /> */}
     </div>
   </Router>
+  </ThemeProvider>
+  
 );
  
 export default withAuthentication(App);

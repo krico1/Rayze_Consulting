@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import RayzeLogo from "../../../img/RayzeLogo.png";
+
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
  
@@ -6,16 +9,77 @@ import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../../PasswordForget';
 import { withFirebase } from '../../../services/Firebase';
 import * as ROUTES from '../../../constants/routes';
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import IconButton from "@material-ui/core/IconButton";
+import EmailIcon from "@material-ui/icons/Email";
+import LockIcon from "@material-ui/icons/Lock";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import InputAdornment from "@material-ui/core/InputAdornment";
  
+// Styles for form
+const useStyles = (theme) => ({
+  paper: {
+    marginTop: theme.spacing(3),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(1),
+  },
+  formIcon: {
+    marginRight: "1rem",
+  },
+  linkText: {
+    color: theme.palette.primary.main,
+    textDecoration: "none",
+  },
+  linkTextBigScreen: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "inline",
+      color: theme.palette.primary.main,
+      textDecoration: "none",
+    },
+  },
+  linkTextSmallScreen: {
+    color: theme.palette.primary.main,
+    textDecoration: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+  errorText: {
+    color: "red",
+    marginTop: "1rem",
+  },
+  logo: {
+    width: "21rem",
+  },
+});
+
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
+ <div>
     <SignInForm />
     <PasswordForgetLink />
     <SignUpLink />
-  </div>
+    </div>
+
 );
- 
+
+
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -27,6 +91,9 @@ class SignInFormBase extends Component {
     super(props);
  
     this.state = { ...INITIAL_STATE };
+    this.state = {
+      pw: "",
+    };
   }
  
   onSubmit = event => {
@@ -50,41 +117,59 @@ class SignInFormBase extends Component {
   };
  
   render() {
+    const { classes } = this.props;
     const { email, password, error } = this.state;
- 
     const isInvalid = password === '' || email === '';
  
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
+     
+      <Container maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+        <img src={RayzeLogo} className = {classes.logo} alt="Logo" /> 
+        <Typography component="h5" variant="h5">
           Sign In
-        </button>
- 
+        </Typography>
+          <form onSubmit={this.onSubmit} classeName={classes.form}>
+          <TextField
+          variant = "outlined"
+          margin="normal"
+          fullWidth
+          name="email"
+          label="Email Address"
+          onChange={this.onChange}
+          />
+           <TextField
+           variant="outlined"
+          name="password"
+          margin="normal"
+          fullWidth
+          label="Password"
+          onChange={this.onChange}
+        />
         {error && <p>{error.message}</p>}
-      </form>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          classes={classes.submit}
+          disabled={isInvalid}
+          >
+            Sign In
+          </Button>
+          </form>
+          </div>
+        </Container>
+
     );
   }
 }
  
-const SignInForm = compose(
-  withRouter,
-  withFirebase,
-)(SignInFormBase);
- 
+const SignInFormStyled = withStyles(useStyles)(SignInFormBase);
+
+const SignInForm = compose(withRouter, withFirebase)(SignInFormStyled);
+
 export default SignInPage;
  
 export { SignInForm };
