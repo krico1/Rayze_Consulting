@@ -1,7 +1,7 @@
 import React from 'react';
  
 import { AuthUserContext, withAuthorization } from '../../services/Session';
-import { PasswordForgetForm } from '../../components/PasswordForget';
+import { PasswordForgetForm } from '../PasswordForget';
 import PasswordChangeForm from '../RegisterPages/PasswordChange';
 
  

@@ -11,7 +11,7 @@ import Navigation from '../components/Navigation';
 import LandingPage from '../components/Landing';
 import SignUpPage from '../pages/RegisterPages/SignUp';
 import SignInPage from '../pages/RegisterPages/SignIn';
-import PasswordForgetPage from '../components/PasswordForget';
+import PasswordForgetPage from '../pages/PasswordForget';
 import HomePage from '../pages/Home';
 import AccountPage from '../pages/Account';
 // import AdminPage from '../Admin';
