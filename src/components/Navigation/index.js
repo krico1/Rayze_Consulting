@@ -1,52 +1,124 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignOutButton from '../../pages/RegisterPages/SignOut';
-
-import * as ROUTES from '../../constants/routes';
 
 import { AuthUserContext } from '../../services/Session';
- 
+import SignOutButton from '../../pages/RegisterPages/SignOut';
+import * as ROUTES from '../../constants/routes';
+import * as ROLES from '../../constants/roles';
 
-const Navigation = () => (
-  <div>
+import { makeStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import RestoreIcon from '@material-ui/icons/Restore';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import InfoIcon from '@material-ui/icons/Info';
+import FlightLandIcon from '@material-ui/icons/FlightLand';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+const useStyles = makeStyles({
+  root: {
+    position: "fixed",
+    bottom: 0,
+    left:0,
+    width: "100%",
+    zIndex:5,
+  },
+});
+
+function Navigation() {
+  
+  return(
     <AuthUserContext.Consumer>
-      {authUser =>
-        authUser ? <NavigationAuth /> : <NavigationNonAuth />
-      }
-    </AuthUserContext.Consumer>
-  </div>
-);
-
-// Navigation for authorized users
-const NavigationAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
-    </li>
-    <li>
-      <SignOutButton />
-    </li>
-  </ul>
-);
+    {authUser =>
+      authUser ? (
+        <NavigationAuth authUser={authUser} />
+      ) : (
+        <NavigationNonAuth />
+      )
+    }
+  </AuthUserContext.Consumer>
+  );
+  
+}
  
 
-// Navigation for unauthorized users
-const NavigationNonAuth = () => (
-  <ul>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-    </li>
-  </ul>
-);
+function NavigationAuth() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+  
+  return (
+    <BottomNavigation
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
+      showLabels
+      className={classes.root}
+    >
+      <BottomNavigationAction 
+        label="Home" 
+        icon={<RestoreIcon />} 
+        component={Link}
+        to="/home"
+        />
+
+       <BottomNavigationAction 
+        label="Account" 
+        icon={<PersonOutlineIcon />} 
+        component={Link}
+        to="/account"
+        /> 
+        
+        <BottomNavigationAction 
+        label="Info" 
+        icon={<InfoIcon />} 
+        component={Link}
+        to="/home"
+        /> 
+
+        {/* <BottomNavigationAction 
+        label="Sign Out" 
+        icon={<ExitToAppIcon />} 
+        component={<SignOutButton/>}
+        />  */}
+        
+        
+    </BottomNavigation>
+  );
  
- 
+}
+
+
+function NavigationNonAuth() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+  
+  return (
+    <BottomNavigation
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+      }}
+      showLabels
+      className={classes.root}
+    >
+      <BottomNavigationAction 
+        label="Landing" 
+        icon={<FlightLandIcon />} 
+        component={Link}
+        to="/landing"
+        />
+
+       <BottomNavigationAction 
+        label="SignIn" 
+        icon={<AccountBoxIcon />} 
+        component={Link}
+        to="/signin"
+        /> 
+    </BottomNavigation>
+  );
+}
+
 export default Navigation;
+
