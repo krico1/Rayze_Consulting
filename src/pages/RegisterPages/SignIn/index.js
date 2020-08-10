@@ -23,6 +23,59 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
  
+
+class PasswordInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      passwordIsMasked: true,
+    };
+  }
+
+  togglePasswordMask = () => {
+    this.setState((prevState) => ({
+      passwordIsMasked: !prevState.passwordIsMasked,
+    }));
+  };
+
+  render() {
+    const { passwordIsMasked } = this.state;
+
+    return (
+      <TextField
+        variant="outlined"
+        margin="normal"
+        fullWidth
+        type={passwordIsMasked ? "password" : "text"}
+        {...this.props}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                disableFocusRipple
+                disableRipple
+                style={{ backgroundColor: "transparent" }}
+                aria-label="toggle password visibility"
+                onClick={this.togglePasswordMask}
+                edge="end"
+              >
+                {passwordIsMasked ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              </IconButton>
+            </InputAdornment>
+          ),
+          startAdornment: <LockIcon style={{ marginRight: "1rem" }} />,
+        }}
+      />
+    );
+  }
+}
+
+PasswordInput.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  // value: PropTypes.func.isRequired,
+};
+
 // Styles for form
 const useStyles = (theme) => ({
   paper: {
@@ -115,6 +168,12 @@ class SignInFormBase extends Component {
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+  onChangePW = (event) => {
+    const { name, value } = event.target;
+
+    this.setState({ [name]: value });
+  };
  
   render() {
     const { classes } = this.props;
@@ -130,7 +189,7 @@ class SignInFormBase extends Component {
         <Typography component="h5" variant="h5">
           Sign In
         </Typography>
-          <form onSubmit={this.onSubmit} classeName={classes.form}>
+          <form onSubmit={this.onSubmit} classeName={classes.form} noValidate>
           <TextField
           variant = "outlined"
           margin="normal"
@@ -139,14 +198,12 @@ class SignInFormBase extends Component {
           label="Email Address"
           onChange={this.onChange}
           />
-           <TextField
-           variant="outlined"
-          name="password"
-          margin="normal"
-          fullWidth
-          label="Password"
-          onChange={this.onChange}
-        />
+           <PasswordInput
+                label="Password"
+                name="password"
+                value={password}
+                onChange={this.onChangePW}
+              />
         {error && <p>{error.message}</p>}
         <Button
           type="submit"

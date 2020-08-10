@@ -105,7 +105,7 @@ function NavigationNonAuth() {
       className={classes.root}
     >
       <BottomNavigationAction 
-        label="Landing" 
+        label="Rayze" 
         icon={<FlightLandIcon />} 
         component={Link}
         to='/'
