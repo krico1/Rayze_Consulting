@@ -3,16 +3,89 @@ import React, { Component } from 'react';
 import { withFirebase } from '../../../services/Firebase';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
+import { PasswordInput } from "../SignIn";
+import PropTypes from "prop-types";
 
 
-
+// Material UI Imports
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+import IconButton from "@material-ui/core/IconButton";
+import PersonIcon from "@material-ui/icons/Person";
+import EmailIcon from "@material-ui/icons/Email";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 import * as ROUTES from '../../../constants/routes';
+
+
+// Used for PasswordTwo data - Material UI
+class PasswordInput2 extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      passwordIsMasked: true,
+    };
+  }
+
+  togglePasswordMask = () => {
+    this.setState((prevState) => ({
+      passwordIsMasked: !prevState.passwordIsMasked,
+    }));
+  };
+
+  render() {
+    const { passwordIsMasked } = this.state;
+
+    return (
+      <TextField
+        variant="outlined"
+        margin="normal"
+        fullWidth
+        type={passwordIsMasked ? "password" : "text"}
+        {...this.props}
+        // Toggle for password display
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                disableFocusRipple
+                disableRipple
+                style={{ backgroundColor: "transparent" }}
+                aria-label="toggle password visibility"
+                onClick={this.togglePasswordMask}
+                edge="end"
+              >
+                {passwordIsMasked ? <VisibilityOffIcon /> : <VisibilityIcon />}
+              </IconButton>
+            </InputAdornment>
+          ),
+          startAdornment: <LockOpenIcon style={{ marginRight: "1rem" }} />,
+        }}
+      />
+    );
+  }
+}
+
+PasswordInput2.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
+
+
+
+
+
  
 // Main Page - Sign Up
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
+    {/* <h1>SignUp</h1> */}
     <SignUpForm />
   </div>
 );
@@ -82,35 +155,42 @@ class SignUpFormBase extends Component {
 
     // Initial sign up form (will be designed later)
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
+      <form onSubmit={this.onSubmit}
+      styles={{ width: "100%", marginTop: "1rem" }}
+      
+      >
+        <TextField
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          id="username"
+          label="First Name"
           name="username"
-          value={username}
+          autoComplete="name"
           onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
         />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
+        <TextField
+              variant="outlined"
+              margin="normal"
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              onChange={this.onChange}
         />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
+           <PasswordInput2
+              label="Password"
+              name="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+            />
+            <PasswordInput
+              label="Password"
+              name="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+            />
         <button type="submit">Sign Up</button>
  
         {error && <p>{error.message}</p>}

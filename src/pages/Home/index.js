@@ -5,7 +5,7 @@ import BrandCardHeader from '../Cards';
 
 const HomePage = () => (
   <div>
-    <h1>Home</h1>
+    {/* <h1>Home</h1> */}
     <BrandCardHeader/>
     <p>The Home Page is accessible by every signed in user.</p>
   </div>

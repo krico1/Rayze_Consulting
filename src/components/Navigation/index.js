@@ -64,18 +64,20 @@ function NavigationAuth() {
         to="/home"
         />
 
-       <BottomNavigationAction 
-        label="Account" 
-        icon={<PersonOutlineIcon />} 
-        component={Link}
-        to="/account"
-        /> 
+      
         
         <BottomNavigationAction 
         label="Info" 
         icon={<InfoIcon />} 
         component={Link}
         to="/home"
+        /> 
+        
+         <BottomNavigationAction 
+        label="Account" 
+        icon={<PersonOutlineIcon />} 
+        component={Link}
+        to="/account"
         /> 
 
         {/* <BottomNavigationAction 

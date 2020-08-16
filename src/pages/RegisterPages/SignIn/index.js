@@ -24,7 +24,7 @@ import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
 import InputAdornment from "@material-ui/core/InputAdornment";
  
 
-class PasswordInput extends Component {
+export class PasswordInput extends Component {
   constructor(props) {
     super(props);
 
@@ -186,9 +186,7 @@ class SignInFormBase extends Component {
         <CssBaseline />
         <div className={classes.paper}>
         <img src={RayzeLogo} className = {classes.logo} alt="Logo" /> 
-        <Typography component="h5" variant="h5">
-          Sign In
-        </Typography>
+        
           <form onSubmit={this.onSubmit} classeName={classes.form} noValidate>
           <TextField
           variant = "outlined"
@@ -222,6 +220,7 @@ class SignInFormBase extends Component {
     );
   }
 }
+// export {PasswordInput};
  
 const SignInFormStyled = withStyles(useStyles)(SignInFormBase);
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Switch
 } from 'react-router-dom';
 import { withFirebase } from '../services/Firebase';
 import { AuthUserContext } from '../services/Session';
@@ -17,6 +18,9 @@ import SignInPage from '../pages/RegisterPages/SignIn';
 import PasswordForgetPage from '../pages/PasswordForget';
 import HomePage from '../pages/Home';
 import AccountPage from '../pages/Account';
+import Header from "../components/Header";
+import {HomeHeader, SignInHeader, SignUpHeader, InfoHeader, AccountHeader} from "../components/Header";
+
 // import AdminPage from '../Admin';
  
 import * as ROUTES from '../constants/routes';
@@ -28,6 +32,39 @@ const App = () => (
     <CssBaseline />
     <Router>
     <div>
+    <Switch>
+        <Route
+          exact
+          path="/account"
+          component={AccountHeader}
+        />
+        <Route
+          exact
+          path="/home"
+          component={HomeHeader}
+        />
+        <Route
+          exact
+          path="/info"
+          component={InfoHeader}
+        />
+        <Route
+          exact
+          path="/landing"
+          component={Header}
+        />
+        <Route
+          exact
+          path="/signin"
+          component={SignInHeader}
+        />
+        <Route
+          exact
+          path="/signout"
+          component={SignUpHeader}
+        />
+      </Switch>
+      {/* <Header/> */}
       <Navigation />
  
       <hr />
