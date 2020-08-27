@@ -4,8 +4,8 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import { withFirebase } from '../services/Firebase';
-import { AuthUserContext } from '../services/Session';
+// import { withFirebase } from '../services/Firebase';
+// import { AuthUserContext } from '../services/Session';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';

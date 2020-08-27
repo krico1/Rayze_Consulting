@@ -1,6 +1,5 @@
 import React from 'react';
 import Rayze from "../../img/Rayze.jpg";
-import landing from "../../img/landing.svg";
 import landing2 from "../../img/landing2.svg";
 
 
@@ -18,13 +17,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   img: {
-    // maxWidth: 200,
-    // maxHeight: 200,
-    // display: "flex",
-    // justifyContent: "center",
+    
     width: "21rem",
-   
-    // padding: "1rem",
+ 
   },
   
 }));
@@ -36,9 +31,7 @@ function LandingPage() {
       <Container>
         <CssBaseline />
         <div className={classes.paper}>
-        {/* <Typography component="h1" variant="h5">
-          Welcome to 
-        </Typography> */}
+        
         <img src={Rayze} className = {classes.img} alt="Logo" />
         <Typography component="h1" variant="h5" align="center">
           Here for small businesses and startup organizations 

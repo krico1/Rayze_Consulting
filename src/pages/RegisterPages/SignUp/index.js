@@ -8,14 +8,10 @@ import PropTypes from "prop-types";
 
 
 // Material UI Imports
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
+
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
+
 import IconButton from "@material-ui/core/IconButton";
-import PersonIcon from "@material-ui/icons/Person";
-import EmailIcon from "@material-ui/icons/Email";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
@@ -191,7 +187,8 @@ class SignUpFormBase extends Component {
               value={passwordTwo}
               onChange={this.onChange}
             />
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={isInvalid}
+>Sign Up</button>
  
         {error && <p>{error.message}</p>}
       </form>

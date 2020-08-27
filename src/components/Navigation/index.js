@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthUserContext } from '../../services/Session';
-import SignOutButton from '../../pages/RegisterPages/SignOut';
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -14,7 +12,6 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import InfoIcon from '@material-ui/icons/Info';
 import FlightLandIcon from '@material-ui/icons/FlightLand';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
