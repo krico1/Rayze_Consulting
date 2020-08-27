@@ -70,7 +70,7 @@ function NavigationAuth() {
         label="Info" 
         icon={<InfoIcon />} 
         component={Link}
-        to="/home"
+        to="/info"
         /> 
         
          <BottomNavigationAction 

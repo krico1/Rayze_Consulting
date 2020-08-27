@@ -66,11 +66,7 @@ export default function InfoCard() {
                   {card.avatar}
                 </Avatar>
               }
-              // action={
-              //   <IconButton aria-label="settings">
-              //     <MoreVertIcon />
-              //   </IconButton>
-              // }
+             
               title={card.title}
               subheader={card.subheader}
             />
@@ -82,6 +78,7 @@ export default function InfoCard() {
             <CardContent>
               <Typography variant="body2" color="textSecondary" component="p">
                 {card.content}
+                {card.link}
               </Typography>
             </CardContent>
             <CardActions disableSpacing>

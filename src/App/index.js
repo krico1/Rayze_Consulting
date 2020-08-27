@@ -18,6 +18,8 @@ import SignInPage from '../pages/RegisterPages/SignIn';
 import PasswordForgetPage from '../pages/PasswordForget';
 import HomePage from '../pages/Home';
 import AccountPage from '../pages/Account';
+import InfoPage from '../pages/Info';
+
 import Header from "../components/Header";
 import {HomeHeader, SignInHeader, SignUpHeader, InfoHeader, AccountHeader} from "../components/Header";
 
@@ -78,6 +80,8 @@ const App = () => (
       />
       <Route path={ROUTES.HOME} component={HomePage} />
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+      <Route path={ROUTES.INFO} component={InfoPage} />
+
       {/* <Route path={ROUTES.ADMIN} component={AdminPage} /> */}
     </div>
   </Router>
