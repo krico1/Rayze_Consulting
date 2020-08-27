@@ -53,13 +53,7 @@ export default function InfoCard() {
   };
 
   return (
-    const [empInfo, setEmpInfo] = useState(0);
-    useEffect(() => {
-      fetch('/time').then(res => res.json()).then(data => {
-        setCurrentTime(data.time);
-      });
-    }, []);
-
+    
     <Grid container justify="center" spacing={2}>
     {/* All cards */ }
         {
