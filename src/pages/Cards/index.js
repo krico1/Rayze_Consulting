@@ -53,7 +53,6 @@ export default function InfoCard() {
   };
 
   return (
-    
     <Grid container justify="center" spacing={2}>
     {/* All cards */ }
         {
