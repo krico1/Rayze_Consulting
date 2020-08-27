@@ -67,11 +67,11 @@ const App = () => (
             component={SignUpHeader}
           />
         </Switch>
-        {/* <Header/> */}
+       
         
         <Navigation />
 
-        {/* <hr /> */}
+    
       
           <Suspense
             fallback={
